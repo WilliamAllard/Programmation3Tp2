@@ -62,7 +62,9 @@ void TP2::ecrireSolution(const std::string filePath)
 
 void TP2::solution() {
     int nombreCase = m_fichierEntente.laby_case_number;
+    // Vecteur pour mettre les case visiter
     std::vector<char> visiter(nombreCase, 0);
+    // Vecteur pour mettre les case précédent. Le -1 permet de dire qu'on est au début (Pratique pour le for)
     std::vector<int> precedent(nombreCase, -1);
     std::queue<uint16_t> file;
 
@@ -116,4 +118,17 @@ void TP2::afficherSolution()
             << (i + 1 < m_etapeChemin.size() ? "-" : "");
     }
     std::cout << '\n';
+}
+
+void TP2::afficherDonneesFichier() {
+    std::cout << "-- Entete Fichier --\n";
+    std::cout << "Type: 0x" << std::hex << m_fichierEntente.file_type << std::dec << "\n";
+    std::cout << "File size: " << m_fichierEntente.file_size << "\n";
+    std::cout << "Labyrinthe size: " << m_fichierEntente.laby_noHeader_size << "\n";
+    std::cout << "Cases: " << m_fichierEntente.laby_case_number << ", start: "
+        << m_fichierEntente.laby_case_startNumber << ", end: "
+        << m_fichierEntente.laby_case_endNumber << "\n";
+    std::cout << "-- Entete Solution --\n";
+    std::cout << "To travel: " << m_solutionEntete.number_case_travel
+        << ", offset: " << m_solutionEntete.data_decalage_sinceStart << "\n";
 }
