@@ -24,7 +24,6 @@ public:
 	void solution();
 	void afficherLiens();
 	void afficherSolution();
-	void afficherDonneesFichier();
 };
 
 #endif

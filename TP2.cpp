@@ -19,7 +19,7 @@ void TP2::lireLabyrinthe(const std::string filePath)
 			m_lienCase.push_back(lien);
 		}
 
-        // Si il y a une solution, il ajout au struct TP2EtapeChemin les données du fichier
+        // Si il y a une solution, il ajout au struct TP2EtapeChemin les donnï¿½es du fichier
         if (m_solutionEntete.number_case_travel > 0) {
             for (int i = 0; i < m_solutionEntete.number_case_travel; i++) {
                 TP2EtapeChemin etape;
@@ -32,7 +32,7 @@ void TP2::lireLabyrinthe(const std::string filePath)
 
 void TP2::ecrireSolution(const std::string filePath)
 {
-    if (m_etapeChemin.empty()) throw std::runtime_error("Aucune solution à écrire");
+    if (m_etapeChemin.empty()) throw std::runtime_error("Aucune solution ï¿½ ï¿½crire");
 
     std::ofstream tp2Sol(filePath, std::ios_base::binary);
 
@@ -64,7 +64,7 @@ void TP2::solution() {
     int nombreCase = m_fichierEntente.laby_case_number;
     // Vecteur pour mettre les case visiter
     std::vector<char> visiter(nombreCase, 0);
-    // Vecteur pour mettre les case précédent. Le -1 permet de dire qu'on est au début (Pratique pour le for)
+    // Vecteur pour mettre les case prï¿½cï¿½dent. Le -1 permet de dire qu'on est au dï¿½but (Pratique pour le for)
     std::vector<int> precedent(nombreCase, -1);
     std::queue<uint16_t> file;
 
@@ -97,7 +97,7 @@ void TP2::solution() {
         chemin.numero_case = numeroCase;
         m_etapeChemin.push_back(chemin);
     }
-    // Inverse le m_etapeChemin pour pemettre le chemin du debut a la fin et non de la fin au début
+    // Inverse le m_etapeChemin pour pemettre le chemin du debut a la fin et non de la fin au dï¿½but
     std::reverse(m_etapeChemin.begin(), m_etapeChemin.end());
 }
 
@@ -118,17 +118,4 @@ void TP2::afficherSolution()
             << (i + 1 < m_etapeChemin.size() ? "-" : "");
     }
     std::cout << '\n';
-}
-
-void TP2::afficherDonneesFichier() {
-    std::cout << "-- Entete Fichier --\n";
-    std::cout << "Type: 0x" << std::hex << m_fichierEntente.file_type << std::dec << "\n";
-    std::cout << "File size: " << m_fichierEntente.file_size << "\n";
-    std::cout << "Labyrinthe size: " << m_fichierEntente.laby_noHeader_size << "\n";
-    std::cout << "Cases: " << m_fichierEntente.laby_case_number << ", start: "
-        << m_fichierEntente.laby_case_startNumber << ", end: "
-        << m_fichierEntente.laby_case_endNumber << "\n";
-    std::cout << "-- Entete Solution --\n";
-    std::cout << "To travel: " << m_solutionEntete.number_case_travel
-        << ", offset: " << m_solutionEntete.data_decalage_sinceStart << "\n";
 }
